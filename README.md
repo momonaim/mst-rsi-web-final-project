@@ -32,7 +32,7 @@ Elle comprend une interface web moderne et une API robuste pour :
 ### Backend
 
 - Laravel
-- SQLite
+- MySQL
 - Laravel Sanctum (authentification)
 - OpenAPI / Swagger (documentation de l’API)
 
@@ -49,7 +49,7 @@ Elle comprend une interface web moderne et une API robuste pour :
 
 - PHP >= 8.0
 - Composer
-- SQLite
+- MySQL
 
 ---
 
