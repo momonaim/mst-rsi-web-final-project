@@ -73,7 +73,7 @@ Elle comprend une interface web moderne et une API robuste pour :
 
 ```bash
 # Cloner le projet frontend
-git clone [url-du-repo-frontend]
+git clone https://github.com/momonaim/mst-rsi-web-final-project
 cd master-rsi-frontend
 ```
 
@@ -90,7 +90,7 @@ yarn install
 #### Cloner le projet backend
 
 ```bash
-git clone [url-du-repo-backend]
+git clone https://github.com/momonaim/mst-rsi-web-final-project
 cd master-rsi-backend
 ```
 
