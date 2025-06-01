@@ -53,6 +53,20 @@ Elle comprend une interface web moderne et une API robuste pour :
 
 ---
 
+## 📸 Aperçu de l'application
+
+<div align="center">
+  <img src="screenshots/home.png" width="200"/>
+  <img src="screenshots/localhost_3000_login.png" width="200"/>
+  <img src="screenshots/formulaires.png" width="200"/>
+  <img src="screenshots/localhost_3000_projects_geolocation.png" width="200"/>
+  <img src="screenshots/chartjs.png" width="200"/>
+  <img src="screenshots/quiz-js.png" width="200"/>
+  <img src="screenshots/matrices.png" width="200"/>
+  <img src="screenshots/localhost_3000_projects_images.png" width="200"/>
+
+</div>
+
 ## 🚀 Installation
 
 ### Frontend
