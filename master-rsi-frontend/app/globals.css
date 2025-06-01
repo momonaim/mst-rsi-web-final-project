@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add any custom global styles here */
+
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+
+header {
+  @apply bg-gray-800 text-white p-4 text-center;
+}
+
+footer {
+  @apply bg-gray-800 text-white p-4 text-center mt-8;
+}
+
+main {
+  @apply min-h-screen p-4;
+}
+
+nav a {
+  @apply text-blue-600 hover:underline mx-2;
+}

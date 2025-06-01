@@ -1,0 +1,297 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "description": "This is the API documentation for My API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Authenticate a student",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "login",
+                                    "pass"
+                                ],
+                                "properties": {
+                                    "login": {
+                                        "type": "string",
+                                        "example": "john_doe"
+                                    },
+                                    "pass": {
+                                        "type": "string",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful authentication",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string"
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new student",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nom",
+                                    "login",
+                                    "pass",
+                                    "pass_confirmation"
+                                ],
+                                "properties": {
+                                    "nom": {
+                                        "description": "Student's full name",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "login": {
+                                        "description": "Unique username",
+                                        "type": "string",
+                                        "example": "john_doe"
+                                    },
+                                    "pass": {
+                                        "description": "Password (min 8 chars)",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    },
+                                    "pass_confirmation": {
+                                        "description": "Password confirmation",
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Student registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9..."
+                                        },
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "etudiant": {
+                                            "$ref": "#/components/schemas/Etudiant"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "login": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The login has already been taken."
+                                                    }
+                                                },
+                                                "pass": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The pass confirmation does not match."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/etudiants": {
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get all students",
+                "operationId": "5f59d4136a8408d473871dd26a11e14f",
+                "responses": {
+                    "200": {
+                        "description": "List of students",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Etudiant"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Etudiant": {
+                "title": "Student",
+                "required": [
+                    "id",
+                    "login",
+                    "nom"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "login": {
+                        "type": "string",
+                        "example": "john_doe"
+                    },
+                    "nom": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "note1": {
+                        "type": "integer",
+                        "example": 15
+                    },
+                    "note2": {
+                        "type": "integer",
+                        "example": 18
+                    },
+                    "moyenne": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 16.5
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "format": "float",
+                        "example": -6.8498
+                    },
+                    "latitude": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 31.7917
+                    }
+                },
+                "type": "object"
+            },
+            "Image": {
+                "title": "Image",
+                "required": [
+                    "id",
+                    "name",
+                    "type",
+                    "size"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "profile"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "jpeg"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "example": 1024
+                    },
+                    "url": {
+                        "description": "Base64 encoded image",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Students",
+            "description": "Students"
+        }
+    ]
+}
