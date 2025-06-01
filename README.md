@@ -14,6 +14,9 @@ Elle comprend une interface web moderne et une API robuste pour :
 - La gestion des étudiants (CRUD)
 - La gestion et le stockage des images
 - L'authentification et l'autorisation des utilisateurs
+- Géo localisation
+- Visualisation des Statistiques avec chartJS
+- Quiz
 
 ---
 
@@ -59,55 +62,76 @@ Elle comprend une interface web moderne et une API robuste pour :
 git clone [url-du-repo-frontend]
 cd master-rsi-frontend
 ```
+
 ## Installer les dépendances
+
 ```bash
 npm install
 # ou
 yarn install
 ```
+
 ### Backend
+
 #### Cloner le projet backend
+
 ```bash
 git clone [url-du-repo-backend]
 cd master-rsi-backend
 ```
+
 #### Installer les dépendances
+
 ```bash
 composer install
 ```
+
 #### Configurer l’environnement
+
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
+
 #### Effectuer les migrations
+
 ```bash
 php artisan migrate
 ```
+
 ## ▶️ Lancer le projet
+
 ### Frontend
+
 ```bash
 npm run dev
 # ou
 yarn dev
 ```
+
 > L'application sera accessible sur http://localhost:3000
 
 ### Backend
+
 ```bash
 php artisan serve
 ```
+
 > API accessible sur http://localhost:8000
 
 ### 📁 Structure des projets
+
 #### Frontend – `master-rsi-frontend/`
+
 ```bash
 ├── app/            # Pages et composants principaux
 ├── components/     # Composants réutilisables
 ├── styles/         # Fichiers CSS
 └── public/         # Fichiers statiques
 ```
+
 #### Backend – `master-rsi-backend/`
+
 ```bash
 ├── app/
 │   ├── Models/            # Modèles (Etudiant, Image, User)
@@ -116,9 +140,13 @@ php artisan serve
 ├── database/migrations/   # Fichiers de migration
 └── routes/api.php         # Définition des routes API
 ```
+
 ### 📚 Documentation de l’API
+
 Accessible à l'adresse :
+
 > http://localhost:8000/api/documentation
 
 ### 👩🏻‍💻 Contributeurs
+
 > MOUADILI Abdelmounim
