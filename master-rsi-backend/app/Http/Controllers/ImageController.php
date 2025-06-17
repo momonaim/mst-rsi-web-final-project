@@ -52,4 +52,41 @@ class ImageController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/images/{id}",
+     *     summary="Delete an image",
+     *     tags={"Images"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the image to delete",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="Image deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Image not found"
+     *     )
+     * )
+     */
+    public function destroy(Image $image)
+    {
+        try {
+            $image->delete();
+            return response()->json(null, 204);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete image',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

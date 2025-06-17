@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\ImageController;
-use App\Http\Controllers\ProductControler;
 use App\Http\Controllers\QuizController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,11 +33,12 @@ Route::middleware('auth:sanctum')->group(function () {
     // Image routes
     Route::get('/images', [ImageController::class, 'index']);
     Route::post('/images', [ImageController::class, 'store']);
+    Route::delete('/images/{image}', [ImageController::class, 'destroy']);
 
     // Quiz routes
     Route::post('/quiz/submit', [QuizController::class, 'submit']);
 
-
-    // Product routes
-    Route::apiResource('products', ProductControler::class);
+    // File operations routes
+    Route::post('/students/save-file', [FileController::class, 'saveStudentsToFile']);
+    Route::get('/students/load-file', [FileController::class, 'loadStudentsFromFile']);
 });

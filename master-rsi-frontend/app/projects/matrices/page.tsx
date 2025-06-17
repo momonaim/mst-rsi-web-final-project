@@ -88,10 +88,9 @@ export default function Matrices() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 to-white p-6">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-xl p-6 space-y-6">
-        <h1 className="text-3xl font-bold text-center text-blue-800">
+        <h1 className="text-3xl font-bold mb-8 text-white bg-dark-blue p-4 rounded-lg text-center shadow-lg transform hover:scale-[1.01] transition-transform">
           Manipulation de Matrices
         </h1>
-
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <h2 className="font-semibold text-lg mb-2">Dimensions Matrice A</h2>

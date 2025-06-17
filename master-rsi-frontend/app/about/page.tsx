@@ -50,12 +50,12 @@ export default function AboutPage() {
           <p>
             <strong>Portfolio:</strong>{" "}
             <a
-              href="https://momonaim.github.io"
+              href="https://momonaim-portfolio.netlify.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-300 hover:underline"
             >
-              momonaim.github.io
+              momonaim-portfolio.netlify.app
             </a>
           </p>
         </div>

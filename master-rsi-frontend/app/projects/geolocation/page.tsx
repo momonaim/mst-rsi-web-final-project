@@ -84,7 +84,9 @@ export default function Geolocation() {
   return (
     <div>
       <main className="min-h-screen p-4">
-        <h1 className="text-2xl font-bold mb-4">Géolocalisation</h1>
+        <h1 className="text-3xl font-bold mb-8 text-white bg-dark-blue p-4 rounded-lg text-center shadow-lg transform hover:scale-[1.01] transition-transform">
+          Géolocalisation
+        </h1>
         <p className="mb-4">
           Carte Leaflet affichant les positions de géolocalisation des
           étudiants.

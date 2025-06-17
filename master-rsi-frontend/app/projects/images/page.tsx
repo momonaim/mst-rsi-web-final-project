@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useSnackbar } from "notistack";
+import Image from "next/image";
 
 type ImageData = {
   id: string | number;
@@ -16,6 +17,7 @@ export default function ImagesPage() {
   const [preview, setPreview] = useState<string | null>(null);
   const [images, setImages] = useState<ImageData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState<string | number | null>(null);
   const { enqueueSnackbar } = useSnackbar();
   // Get token more safely
   const getToken = () => {
@@ -155,6 +157,55 @@ export default function ImagesPage() {
     }
   }, [enqueueSnackbar]);
 
+  const handleDelete = async (id: string | number) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this image?"
+    );
+    if (!confirmed) return;
+
+    setIsDeleting(id);
+    try {
+      const token = getToken();
+      if (!token) {
+        throw new Error("Authentication token not found");
+      }
+
+      await axios.delete(`http://localhost:8000/api/images/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      enqueueSnackbar("Image deleted successfully!", {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right",
+        },
+      });
+
+      // Remove the deleted image from the state
+      setImages((images) => images.filter((img) => img.id !== id));
+    } catch (error: unknown) {
+      console.error("Delete error:", error);
+      let message = "Failed to delete image";
+      if (axios.isAxiosError(error)) {
+        message = error.response?.data?.message || error.message || message;
+      } else if (error instanceof Error) {
+        message = error.message;
+      }
+      enqueueSnackbar(message, {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right",
+        },
+      });
+    } finally {
+      setIsDeleting(null);
+    }
+  };
+
   useEffect(() => {
     fetchImages();
   }, [fetchImages]);
@@ -162,7 +213,7 @@ export default function ImagesPage() {
   return (
     <div className="min-h-screen p-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">
+        <h1 className="text-3xl font-bold mb-8 text-white bg-dark-blue p-4 rounded-lg text-center shadow-lg transform hover:scale-[1.01] transition-transform">
           Image Management
         </h1>
 
@@ -266,9 +317,11 @@ export default function ImagesPage() {
                 >
                   <div className="aspect-square bg-gray-100 flex items-center justify-center">
                     {img.bin_img ? (
-                      <img
+                      <Image
                         src={`data:image/${img.type};base64,${img.bin_img}`}
                         alt={img.name}
+                        width={300}
+                        height={300}
                         className="object-cover w-full h-full"
                       />
                     ) : (
@@ -281,9 +334,24 @@ export default function ImagesPage() {
                     <p className="text-sm font-medium text-gray-700 truncate">
                       {img.name}
                     </p>
-                    <p className="text-xs text-gray-500">
-                      {Math.round(img.size / 1024)} KB
-                    </p>
+                    <div className="flex justify-between items-center mt-2">
+                      <p className="text-xs text-gray-500">
+                        {Math.round(img.size / 1024)} KB
+                      </p>
+                      <button
+                        onClick={() => handleDelete(img.id)}
+                        disabled={isDeleting === img.id}
+                        className={`text-xs px-2 py-1 rounded
+                          ${
+                            isDeleting === img.id
+                              ? "bg-red-300 cursor-not-allowed"
+                              : "bg-red-500 hover:bg-red-600"
+                          } 
+                          text-white transition-colors`}
+                      >
+                        {isDeleting === img.id ? "Deleting..." : "Delete"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
