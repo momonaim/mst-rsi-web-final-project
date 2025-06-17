@@ -58,7 +58,7 @@ Elle comprend une interface web moderne et une API robuste pour :
 <div align="center">
   <img src="screenshots/home.png" width="200"/>
   <img src="screenshots/localhost_3000_login.png" width="200"/>
-  <img src="screenshots/formulaire.png" width="200"/>
+  <img src="screenshots/formulaires.png" width="200"/>
   <img src="screenshots/localhost_3000_projects_geolocation.png" width="200"/>
   <img src="screenshots/chartjs.png" width="200"/>
   <img src="screenshots/quiz-js.png" width="200"/>
