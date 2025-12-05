@@ -1,6 +1,6 @@
 # Master RSI – Full Stack Project
 
-Ce projet combine à la fois le service d'API backend (**Master RSI Backend**) t l'application web frontend (**MST-RSI Frontend**) du système de gestion des étudiants du **Master RSI (Réseaux et Systèmes d'Information)**.
+Ce projet combine à la fois le service d'API backend (**Master RSI Backend**) et l'application web frontend (**MST-RSI Frontend**) du système de gestion des étudiants du **Master RSI (Réseaux et Systèmes d'Information)**.
 
 > Réalisé par **MOUADILI Abdelmounim**
 
@@ -73,7 +73,7 @@ Elle comprend une interface web moderne et une API robuste pour :
 
 ```bash
 # Cloner le projet frontend
-git clone https://github.com/momonaim/mst-rsi-web-final-project
+git clone https://github.com/momonaim/mst-rsi-web-final-project.git
 cd master-rsi-frontend
 ```
 
@@ -90,7 +90,7 @@ yarn install
 #### Cloner le projet backend
 
 ```bash
-git clone https://github.com/momonaim/mst-rsi-web-final-project
+git clone https://github.com/momonaim/mst-rsi-web-final-project.git
 cd master-rsi-backend
 ```
 
